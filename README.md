@@ -95,48 +95,42 @@ Subscription-Renewal-and-Expense-Tracker/
 ├── Dockerfile
 ├── README.md
 ├── docker-compose.yml
-├── mvnw
-├── mvnw.cmd
 ├── pom.xml
-├── .mvn/
-│   └── wrapper/
-│       └── maven-wrapper.properties
 └── src/
     ├── main/
     │   ├── java/
     │   │   └── com/
-    │   │       └── ibm/
-    │   │           └── tracker/
-    │   │               ├── SubscriptionTrackerApplication.java
-    │   │               ├── config/
-    │   │               │   └── RedisConfig.java
-    │   │               ├── controller/
-    │   │               │   ├── ExpenseController.java
-    │   │               │   └── SubscriptionController.java
-    │   │               ├── dto/
-    │   │               │   ├── CategoryExpenseDTO.java
-    │   │               │   ├── ErrorResponseDTO.java
-    │   │               │   ├── MonthlyExpenseSummaryDTO.java
-    │   │               │   ├── PagedResponseDTO.java
-    │   │               │   ├── SubscriptionRequestDTO.java
-    │   │               │   └── SubscriptionResponseDTO.java
-    │   │               ├── entity/
-    │   │               │   ├── BillingFrequency.java
-    │   │               │   ├── Subscription.java
-    │   │               │   └── SubscriptionStatus.java
-    │   │               ├── exception/
-    │   │               │   ├── GlobalExceptionHandler.java
-    │   │               │   └── ResourceNotFoundException.java
-    │   │               ├── repository/
-    │   │               │   └── SubscriptionRepository.java
-    │   │               ├── service/
-    │   │               │   ├── ExpenseService.java
-    │   │               │   ├── SubscriptionService.java
-    │   │               │   └── impl/
-    │   │               │       ├── ExpenseServiceImpl.java
-    │   │               │       └── SubscriptionServiceImpl.java
-    │   │               └── util/
-    │   │                   └── RenewalCalculator.java
+    │   │       └── tracker/
+    │   │           ├── SubscriptionTrackerApplication.java
+    │   │           ├── config/
+    │   │           │   └── RedisConfig.java
+    │   │           ├── controller/
+    │   │           │   ├── ExpenseController.java
+    │   │           │   └── SubscriptionController.java
+    │   │           ├── dto/
+    │   │           │   ├── CategoryExpenseDTO.java
+    │   │           │   ├── ErrorResponseDTO.java
+    │   │           │   ├── MonthlyExpenseSummaryDTO.java
+    │   │           │   ├── PagedResponseDTO.java
+    │   │           │   ├── SubscriptionRequestDTO.java
+    │   │           │   └── SubscriptionResponseDTO.java
+    │   │           ├── entity/
+    │   │           │   ├── BillingFrequency.java
+    │   │           │   ├── Subscription.java
+    │   │           │   └── SubscriptionStatus.java
+    │   │           ├── exception/
+    │   │           │   ├── GlobalExceptionHandler.java
+    │   │           │   └── ResourceNotFoundException.java
+    │   │           ├── repository/
+    │   │           │   └── SubscriptionRepository.java
+    │   │           ├── service/
+    │   │           │   ├── ExpenseService.java
+    │   │           │   ├── SubscriptionService.java
+    │   │           │   └── impl/
+    │   │           │       ├── ExpenseServiceImpl.java
+    │   │           │       └── SubscriptionServiceImpl.java
+    │   │           └── util/
+    │   │               └── RenewalCalculator.java
     │   └── resources/
     │       ├── application.properties
     │       ├── application-dev.properties
@@ -146,23 +140,19 @@ Subscription-Renewal-and-Expense-Tracker/
     │       └── static/
     │           ├── index.html
     │           ├── css/
-    │           │   └── styles.css
     │           └── js/
-    │               ├── api.js
-    │               └── app.js
     └── test/
         ├── java/
         │   └── com/
-        │       └── ibm/
-        │           └── tracker/
-        │               ├── controller/
-        │               │   ├── ExpenseControllerTest.java
-        │               │   └── SubscriptionControllerTest.java
-        │               ├── service/
-        │               │   ├── ExpenseServiceTest.java
-        │               │   └── SubscriptionServiceTest.java
-        │               └── util/
-        │                   └── RenewalCalculatorTest.java
+        │       └── tracker/
+        │           ├── controller/
+        │           │   ├── ExpenseControllerTest.java
+        │           │   └── SubscriptionControllerTest.java
+        │           ├── service/
+        │           │   ├── ExpenseServiceTest.java
+        │           │   └── SubscriptionServiceTest.java
+        │           └── util/
+        │               └── RenewalCalculatorTest.java
         └── resources/
             └── application-test.properties
 ```
@@ -260,7 +250,7 @@ CREATE INDEX idx_sub_status ON subscriptions (status);
 ## Installation & Prerequisites
 
 - **Java**: OpenJDK 17 or higher
-- **Maven**: Version 3.8+ (or use included `./mvnw`)
+- **Maven**: Version 3.8+
 - **Docker & Docker Compose** (optional, for containerized run)
 - **MySQL 8.x & Redis 7.x** (optional for local profile; included in Docker)
 
@@ -286,11 +276,7 @@ The application uses Spring Boot profiles to separate development and production
 Runs with embedded H2 and built-in seed data on port 8080:
 
 ```bash
-# Windows
-.\mvnw.cmd spring-boot:run
-
-# Linux / macOS
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 Access the dashboard at: [http://localhost:8080](http://localhost:8080)  
@@ -316,7 +302,7 @@ The project includes 30 automated tests executed via the Maven Surefire plugin.
 
 ```bash
 # Run entire test suite
-.\mvnw.cmd test
+mvn test
 ```
 
 ### Verified Test Results
@@ -324,15 +310,15 @@ The project includes 30 automated tests executed via the Maven Surefire plugin.
 [INFO] -------------------------------------------------------
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
-[INFO] Running com.ibm.tracker.util.RenewalCalculatorTest
+[INFO] Running com.tracker.util.RenewalCalculatorTest
 [INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.ibm.tracker.service.SubscriptionServiceTest
+[INFO] Running com.tracker.service.SubscriptionServiceTest
 [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.ibm.tracker.service.ExpenseServiceTest
+[INFO] Running com.tracker.service.ExpenseServiceTest
 [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.ibm.tracker.controller.SubscriptionControllerTest
+[INFO] Running com.tracker.controller.SubscriptionControllerTest
 [INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.ibm.tracker.controller.ExpenseControllerTest
+[INFO] Running com.tracker.controller.ExpenseControllerTest
 [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 [INFO] 
 [INFO] Results:

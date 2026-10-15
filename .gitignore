@@ -19,7 +19,9 @@ hs_err_pid*
 replay_pid*
 
 # Maven
-# Note: mvnw and .mvn/wrapper are tracked for zero-dependency builds
+.mvn/
+mvnw
+mvnw.cmd
 
 
 # IntelliJ IDEA

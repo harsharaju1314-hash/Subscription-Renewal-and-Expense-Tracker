@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.ibm</groupId>
+    <groupId>com.tracker</groupId>
     <artifactId>subscription-tracker</artifactId>
     <version>1.0.0</version>
     <name>Subscription Renewal and Expense Tracker</name>
