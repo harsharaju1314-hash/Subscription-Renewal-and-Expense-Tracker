@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Renewal & Expense Tracker | Spring Boot & Redis</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Application Banner -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="brand-section">
+                <div class="brand-logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Subscription & Expense Tracker</h1>
+                    <p class="brand-subtitle">Spring Boot 3 • REST APIs • MySQL • Redis Caching • JUnit 5</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button id="btnRefreshData" class="btn btn-secondary" title="Refresh state from backend REST API">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    Refresh
+                </button>
+                <button id="btnOpenAddModal" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add Subscription
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Toast Notification Area -->
+        <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+        <!-- Metric KPI Cards -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-title">Monthly Normalized Spend</span>
+                    <span class="kpi-tag">Redis Cached</span>
+                </div>
+                <div class="kpi-value" id="kpiMonthlySpend">$0.00</div>
+                <div class="kpi-subtext" id="kpiMonthlyCount">Across 0 active services</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-title">Projected Annual Spend</span>
+                    <span class="kpi-tag">12x Normalized</span>
+                </div>
+                <div class="kpi-value" id="kpiAnnualSpend">$0.00</div>
+                <div class="kpi-subtext">Estimated 12-month commitment</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-title">Active Subscriptions</span>
+                    <span class="kpi-tag status-active">Active</span>
+                </div>
+                <div class="kpi-value" id="kpiActiveCount">0</div>
+                <div class="kpi-subtext">Tracked recurring contracts</div>
+            </div>
+
+            <div class="kpi-card">
+                <div class="kpi-header">
+                    <span class="kpi-title">Upcoming (Next 30 Days)</span>
+                    <span class="kpi-tag status-warning">Action Req.</span>
+                </div>
+                <div class="kpi-value" id="kpiUpcomingCount">0</div>
+                <div class="kpi-subtext">Renewals due within 30 days</div>
+            </div>
+        </section>
+
+        <!-- Dashboard Content Grid -->
+        <div class="dashboard-grid">
+            <!-- Left Column: Subscription Table -->
+            <section class="table-section card">
+                <div class="section-toolbar">
+                    <div class="toolbar-title-group">
+                        <h2>All Subscriptions</h2>
+                        <span id="recordCountBadge" class="badge">0 total</span>
+                    </div>
+                    
+                    <div class="toolbar-filters">
+                        <!-- Category Filter -->
+                        <select id="filterCategory" class="form-control select-compact">
+                            <option value="">All Categories</option>
+                            <option value="SOFTWARE">Software</option>
+                            <option value="STREAMING">Streaming</option>
+                            <option value="CLOUD">Cloud</option>
+                            <option value="FITNESS">Fitness</option>
+                            <option value="NEWS">News</option>
+                            <option value="ENTERTAINMENT">Entertainment</option>
+                            <option value="UTILITIES">Utilities</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+
+                        <!-- Status Filter -->
+                        <select id="filterStatus" class="form-control select-compact">
+                            <option value="">All Statuses</option>
+                            <option value="ACTIVE" selected>Active Only</option>
+                            <option value="PAUSED">Paused</option>
+                            <option value="CANCELLED">Cancelled</option>
+                        </select>
+
+                        <!-- Sort By -->
+                        <select id="sortField" class="form-control select-compact">
+                            <option value="nextRenewalDate">Sort: Renewal Date</option>
+                            <option value="amount">Sort: Amount</option>
+                            <option value="name">Sort: Name</option>
+                        </select>
+                        
+                        <select id="sortDirection" class="form-control select-compact">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table Loading Indicator -->
+                <div id="tableLoading" class="loading-state hidden">
+                    <div class="spinner"></div>
+                    <p>Loading subscriptions from API...</p>
+                </div>
+
+                <!-- Table Container -->
+                <div class="table-responsive">
+                    <table class="data-table" id="subscriptionTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Frequency</th>
+                                <th>Cost</th>
+                                <th>Monthly Eq.</th>
+                                <th>Next Renewal</th>
+                                <th>Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscriptionTableBody">
+                            <!-- Populated via app.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="empty-state hidden">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    <h3>No Subscriptions Found</h3>
+                    <p>Adjust your filter criteria or register a new subscription to get started.</p>
+                    <button class="btn btn-primary" onclick="openCreateModal()">Create First Subscription</button>
+                </div>
+
+                <!-- Pagination Toolbar -->
+                <div class="pagination-footer">
+                    <div class="pagination-info">
+                        Showing page <span id="currentPageNum">1</span> of <span id="totalPagesNum">1</span>
+                    </div>
+                    <div class="pagination-buttons">
+                        <button id="btnPrevPage" class="btn btn-secondary btn-sm" disabled>Previous</button>
+                        <button id="btnNextPage" class="btn btn-secondary btn-sm" disabled>Next</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Sidebar Analytics -->
+            <aside class="sidebar-section">
+                <!-- Upcoming Renewals Alert Feed -->
+                <div class="card feed-card">
+                    <div class="card-header">
+                        <h3>Upcoming Renewals (30 Days)</h3>
+                        <span class="badge badge-info" id="upcomingFeedCount">0</span>
+                    </div>
+                    <div id="upcomingFeedList" class="upcoming-feed">
+                        <!-- Populated via app.js -->
+                    </div>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="card breakdown-card">
+                    <div class="card-header">
+                        <h3>Spending by Category</h3>
+                        <span class="badge">Normalized</span>
+                    </div>
+                    <div id="categoryBreakdownList" class="category-breakdown">
+                        <!-- Populated via app.js -->
+                    </div>
+                </div>
+
+                <!-- Redis Cache Demonstration Panel -->
+                <div class="card cache-card">
+                    <div class="card-header">
+                        <h3>Cache & System Architecture</h3>
+                        <span class="badge badge-success">Redis Active</span>
+                    </div>
+                    <div class="cache-info">
+                        <p class="cache-desc">
+                            Analytics and upcoming renewals use <code>@Cacheable</code> in Redis with automatic <code>@CacheEvict</code> invalidation on subscription mutations.
+                        </p>
+                        <div class="cache-tags">
+                            <code>upcomingRenewals</code>
+                            <code>monthlySummary</code>
+                            <code>categorySummary</code>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Create / Edit Subscription Modal Dialog -->
+    <div id="subscriptionModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Subscription</h3>
+                <button type="button" class="modal-close" id="btnModalClose">&times;</button>
+            </div>
+            
+            <form id="subscriptionForm" novalidate>
+                <input type="hidden" id="formSubscriptionId">
+
+                <div id="formErrorBanner" class="alert alert-error hidden"></div>
+
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="formName">Subscription Name *</label>
+                        <input type="text" id="formName" class="form-control" placeholder="e.g. GitHub Copilot, Netflix" required maxlength="100">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="formCategory">Category *</label>
+                        <input type="text" id="formCategory" class="form-control" placeholder="SOFTWARE, STREAMING, etc." required maxlength="50" list="categorySuggestions">
+                        <datalist id="categorySuggestions">
+                            <option value="SOFTWARE">
+                            <option value="STREAMING">
+                            <option value="CLOUD">
+                            <option value="FITNESS">
+                            <option value="NEWS">
+                            <option value="ENTERTAINMENT">
+                            <option value="UTILITIES">
+                            <option value="OTHER">
+                        </datalist>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="formBillingFrequency">Billing Frequency *</label>
+                        <select id="formBillingFrequency" class="form-control" required>
+                            <option value="MONTHLY" selected>Monthly</option>
+                            <option value="ANNUALLY">Annually</option>
+                            <option value="QUARTERLY">Quarterly</option>
+                            <option value="WEEKLY">Weekly</option>
+                            <option value="BI_WEEKLY">Bi-Weekly</option>
+                            <option value="SEMI_ANNUALLY">Semi-Annually</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="formAmount">Amount *</label>
+                        <input type="number" id="formAmount" class="form-control" placeholder="0.00" step="0.01" min="0.01" required>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="formCurrency">Currency *</label>
+                        <input type="text" id="formCurrency" class="form-control" value="USD" maxlength="3" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label for="formStartDate">Start Date *</label>
+                        <input type="date" id="formStartDate" class="form-control" required>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="formStatus">Status</label>
+                        <select id="formStatus" class="form-control">
+                            <option value="ACTIVE" selected>ACTIVE</option>
+                            <option value="PAUSED">PAUSED</option>
+                            <option value="CANCELLED">CANCELLED</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="formNotes">Notes / Description (Optional)</label>
+                        <input type="text" id="formNotes" class="form-control" placeholder="e.g. Development tool license" maxlength="255">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnModalCancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnModalSave">Save Subscription</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
