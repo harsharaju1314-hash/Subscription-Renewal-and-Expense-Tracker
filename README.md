@@ -6,7 +6,7 @@ A full-stack web application designed to track recurring subscriptions, automate
 
 ## Overview
 
-Modern software ecosystems involve numerous recurring expenses spanning cloud providers, developer tool licenses, and entertainment services. Subscriptions follow disparate billing cadences (weekly, bi-weekly, monthly, quarterly, semi-annually, annually), creating two primary challenges: tracking upcoming renewals before unreviewed charges occur, and projecting accurate monthly and annual burn rates.
+Modern software ecosystems involve numerous recurring expenses spanning cloud providers, developer tool licenses, and digital services. Subscriptions follow disparate billing cadences (weekly, bi-weekly, monthly, quarterly, semi-annually, annually), creating two primary challenges: tracking upcoming renewals before unreviewed charges occur, and projecting accurate monthly and annual burn rates.
 
 This project delivers a centralized platform featuring a responsive frontend, a layered Spring Boot REST backend, relational persistence via MySQL, and an in-memory caching layer using Redis.
 
@@ -29,7 +29,6 @@ This project delivers a centralized platform featuring a responsive frontend, a 
 - **Redis In-Memory Caching**: Cache-aside implementation caching monthly summaries, category distributions, and upcoming renewals, with automated eviction (`@CacheEvict`) on write operations.
 - **Responsive Dashboard UI**: Single-page interface built with modern HTML5, CSS3, and native JavaScript `fetch()` that renders live KPI cards, interactive modals, urgency indicators, and category progress bars.
 - **Automated Test Coverage**: 30 automated tests spanning pure mathematical/calendar unit tests, Mockito service layer tests, and Spring MVC WebMvcTest controller integration suites.
-- **Containerized Architecture**: Multi-stage `Dockerfile` and `docker-compose.yml` defining the application, MySQL 8.4, and Redis 7 services with health checks and volume persistence.
 
 ---
 
@@ -39,11 +38,10 @@ This project delivers a centralized platform featuring a responsive frontend, a 
 | :--- | :--- |
 | **Backend** | Java 17, Spring Boot 3.3.4 (Spring Web, Spring Data JPA, Spring Cache, Validation) |
 | **Frontend** | HTML5, CSS3, JavaScript (Fetch API, DOM Manipulation) |
-| **Database** | MySQL 8.4 (InnoDB), H2 Database (in-memory dev/test profile) |
+| **Database** | MySQL 8.4 (InnoDB), H2 Database (in-memory test profile) |
 | **Caching** | Redis 7, Spring Data Redis, GenericJackson2JsonRedisSerializer |
 | **Testing** | JUnit 5, Mockito, AssertJ, Spring Boot Test, Spring MVC Test |
-| **Build & Tooling** | Apache Maven 3.9.9, Maven Wrapper (`mvnw`) |
-| **DevOps** | Docker, Docker Compose |
+| **Build & Tooling** | Apache Maven 3.9.9 |
 | **VCS** | Git, GitHub |
 
 ---
@@ -90,12 +88,10 @@ Redis Cache                       MySQL Database (JPA / Hibernate)
 
 ```
 Subscription-Renewal-and-Expense-Tracker/
-├── .dockerignore
 ├── .gitignore
-├── Dockerfile
-├── README.md
-├── docker-compose.yml
+├── INTERVIEW.md
 ├── pom.xml
+├── README.md
 └── src/
     ├── main/
     │   ├── java/
@@ -133,14 +129,15 @@ Subscription-Renewal-and-Expense-Tracker/
     │   │               └── RenewalCalculator.java
     │   └── resources/
     │       ├── application.properties
-    │       ├── application-dev.properties
-    │       ├── application-mysql.properties
     │       ├── data.sql
     │       ├── schema.sql
     │       └── static/
     │           ├── index.html
     │           ├── css/
+    │           │   └── styles.css
     │           └── js/
+    │               ├── api.js
+    │               └── app.js
     └── test/
         ├── java/
         │   └── com/
@@ -241,67 +238,33 @@ CREATE INDEX idx_sub_status ON subscriptions (status);
   - `upcomingRenewals`: Key `'upcoming-' + #days` stores `List<SubscriptionResponseDTO>`.
 - **TTL**: 10 minutes (600,000 ms) configured via `RedisConfig.java` to prevent stale data buildup.
 - **Cache Invalidation**: On write operations (`createSubscription`, `updateSubscription`, `deleteSubscription`), `@CacheEvict(allEntries = true)` purges the affected cache namespaces, ensuring cache consistency.
-- **Tradeoff Discussion**:
-  - *Advantage*: Aggregation calculations and database joins are executed once and cached, eliminating repetitive full table scans on high-traffic dashboards.
-  - *Risk*: Without distributed eviction, multi-instance setups risk serving stale data if database modifications bypass the service layer. In this architecture, service-level `@CacheEvict` ensures cache coherence for application operations.
 
 ---
 
-## Installation & Prerequisites
+## Installation & Running
 
+### Prerequisites
 - **Java**: OpenJDK 17 or higher
 - **Maven**: Version 3.8+
-- **Docker & Docker Compose** (optional, for containerized run)
-- **MySQL 8.x & Redis 7.x** (optional for local profile; included in Docker)
+- **MySQL & Redis** (or runs with embedded profile)
 
----
-
-## Configuration
-
-The application uses Spring Boot profiles to separate development and production environments:
-
-- **`dev` profile (Default)**: Uses in-memory H2 database with MySQL dialect and in-memory cache abstraction. Requires no external services.
-- **`mysql` profile**: Connects to external MySQL and Redis services via environment variables:
-  - `DB_URL` (default: `jdbc:mysql://localhost:3306/subscription_db`)
-  - `DB_USERNAME` (default: `root`)
-  - `DB_PASSWORD` (default: `root`)
-  - `REDIS_HOST` (default: `localhost`)
-  - `REDIS_PORT` (default: `6379`)
-
----
-
-## Running the Application
-
-### Option 1: Standalone Local Mode (Zero External Dependencies)
-Runs with embedded H2 and built-in seed data on port 8080:
+### Running the Application
 
 ```bash
+# Run application
 mvn spring-boot:run
 ```
 
-Access the dashboard at: [http://localhost:8080](http://localhost:8080)  
-Access the H2 database console at: [http://localhost:8080/h2-console](http://localhost:8080/h2-console) (JDBC URL: `jdbc:h2:mem:subscription_db`, User: `sa`, Password: empty).
-
-### Option 2: Docker Compose (Full Stack with MySQL & Redis)
-Launches the application container, MySQL 8.4, and Redis 7 in a private network:
-
-```bash
-docker-compose up --build
-```
-
-To stop containers and keep data:
-```bash
-docker-compose down
-```
+Access the dashboard at: [http://localhost:8080](http://localhost:8080)
 
 ---
 
 ## Testing
 
-The project includes 30 automated tests executed via the Maven Surefire plugin.
+The project includes 30 automated tests executed via the Maven Surefire plugin:
 
 ```bash
-# Run entire test suite
+# Run test suite
 mvn test
 ```
 
@@ -326,46 +289,6 @@ mvn test
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-```
-
-### Test Scope
-1. **`RenewalCalculatorTest`**: Verifies weekly, bi-weekly, monthly, quarterly, semi-annually, annually, month-end clamping (Jan 31 to Feb 28/29), leap year handling (Feb 29 to Feb 28), and normalization math.
-2. **`SubscriptionServiceTest`**: Tests business operations, repository interaction, error handling (`ResourceNotFoundException`), and date recalculation on cadence modification.
-3. **`ExpenseServiceTest`**: Tests monthly/annual aggregations and category percentage distributions.
-4. **`SubscriptionControllerTest` & `ExpenseControllerTest`**: Tests REST status codes (`201`, `200`, `204`, `400`, `404`) and JSON serialization using MockMvc.
-
----
-
-## Sample Usage
-
-### 1. Create a Subscription
-```bash
-curl -X POST http://localhost:8080/api/v1/subscriptions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Datadog Pro",
-    "category": "CLOUD",
-    "amount": 15.00,
-    "currency": "USD",
-    "billingFrequency": "MONTHLY",
-    "startDate": "2026-01-15",
-    "notes": "Infrastructure monitoring"
-  }'
-```
-
-### 2. Retrieve Portfolio Spending Summary
-```bash
-curl http://localhost:8080/api/v1/expenses/summary
-```
-**Response**:
-```json
-{
-  "totalActiveSubscriptions": 8,
-  "totalMonthlyExpense": 223.56,
-  "totalAnnualExpense": 2682.72,
-  "currency": "USD",
-  "calculatedAt": "2026-10-15T20:06:30"
-}
 ```
 
 ---
