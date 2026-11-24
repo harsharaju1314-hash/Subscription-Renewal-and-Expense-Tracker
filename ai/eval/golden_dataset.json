@@ -1,0 +1,2652 @@
+[
+  {
+    "id": 1,
+    "query": "How much did I spend on subscriptions this month?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 2,
+    "query": "Could you tell me: What is my total monthly subscription cost?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 3,
+    "query": "Please check: Can you calculate my monthly recurring expenses?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 4,
+    "query": "Quick question: What are my total subscription costs per month?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 5,
+    "query": "Show me my monthly recurring bill total.",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 6,
+    "query": "Could you tell me: How much am I paying each month for recurring tools?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 7,
+    "query": "Please check: Give me the total breakdown of monthly spending.",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 8,
+    "query": "Quick question: What does my monthly subscription bill add up to?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 9,
+    "query": "How much money goes towards subscriptions every month?",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 10,
+    "query": "Could you tell me: Summarize my current monthly subscription expense.",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 11,
+    "query": "Please check: Which subscriptions are renewing next week?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 12,
+    "query": "Quick question: What subscriptions renew in the next 7 days?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 13,
+    "query": "Are there any subscriptions renewing soon?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 14,
+    "query": "Could you tell me: Show me upcoming subscription renewal dates.",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 15,
+    "query": "Please check: What payments are due next week?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 16,
+    "query": "Quick question: Which services will charge me in the next 14 days?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 17,
+    "query": "List upcoming renewals for this month.",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 18,
+    "query": "Could you tell me: Do I have any bills coming up next week?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 19,
+    "query": "Please check: Check when my next subscription will renew.",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 20,
+    "query": "Quick question: What renewals should I expect within two weeks?",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 21,
+    "query": "Which subscription categories consume most of my budget?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 22,
+    "query": "Could you tell me: Break down my subscription expenses by category.",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 23,
+    "query": "Please check: How much do I spend on entertainment compared to cloud?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "Netflix Premium",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 24,
+    "query": "Quick question: What percentage of my spend goes to developer tools?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 25,
+    "query": "Show category-wise distribution of my recurring costs.",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 26,
+    "query": "Could you tell me: How much am I spending on cloud infrastructure?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "DigitalOcean Droplets"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "digitalocean droplets"
+    ]
+  },
+  {
+    "id": 27,
+    "query": "Please check: What are my highest expense categories?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 28,
+    "query": "Quick question: Provide a breakdown of software vs streaming services.",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 29,
+    "query": "Which category has the highest monthly recurring bill?",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 30,
+    "query": "Could you tell me: List all subscription categories with their monthly spend.",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 31,
+    "query": "Please check: How can I reduce my monthly subscription expenses?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 32,
+    "query": "Quick question: Which subscriptions should I consider cancelling to save money?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 33,
+    "query": "Are there low-utility subscriptions I can cut?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 34,
+    "query": "Could you tell me: Where am I wasting money on recurring bills?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 35,
+    "query": "Please check: Identify subscriptions with low ratings that are not essential.",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 36,
+    "query": "Quick question: How much could I save if I cancel unused services?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 37,
+    "query": "Find potential cost savings in my subscription list.",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 38,
+    "query": "Could you tell me: Recommend unnecessary subscriptions to cancel this month.",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 39,
+    "query": "Please check: What are my least utilized subscriptions?",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 40,
+    "query": "Quick question: Help me trim my subscription budget by eliminating low value items.",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 41,
+    "query": "Which subscriptions cost me the most?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 42,
+    "query": "Could you tell me: What is my single most expensive subscription?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 43,
+    "query": "Please check: Rank my subscriptions from highest to lowest cost.",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 44,
+    "query": "Quick question: Show me the top 3 most expensive recurring accounts.",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 45,
+    "query": "What accounts have the highest monthly charge?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 46,
+    "query": "Could you tell me: Which services cost more than $20 per month?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 47,
+    "query": "Please check: List my biggest recurring expenses.",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 48,
+    "query": "Quick question: What are my priciest subscriptions right now?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 49,
+    "query": "Identify top costly subscriptions in my portfolio.",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 50,
+    "query": "Could you tell me: Who takes the largest cut of my monthly subscription budget?",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 51,
+    "query": "Please check: How much do I pay for Netflix each month?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 52,
+    "query": "Quick question: When does my Spotify subscription renew?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 53,
+    "query": "What is the cost of my AWS account?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 54,
+    "query": "Could you tell me: Is GitHub Copilot marked as essential?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "GitHub Copilot Individual"
+    ],
+    "expected_keywords": [
+      "github copilot individual"
+    ]
+  },
+  {
+    "id": 55,
+    "query": "Please check: Show details for my ChatGPT Plus subscription.",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 56,
+    "query": "Quick question: When is my Disney+ renewal scheduled?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Disney+ Bundle"
+    ],
+    "expected_keywords": [
+      "disney+ bundle"
+    ]
+  },
+  {
+    "id": 57,
+    "query": "How much does YouTube Premium cost me?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "YouTube Premium"
+    ],
+    "expected_keywords": [
+      "youtube premium"
+    ]
+  },
+  {
+    "id": 58,
+    "query": "Could you tell me: What billing cycle is set for my cloud services?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 59,
+    "query": "Please check: Check my Audible subscription status.",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Audible Premium Plus"
+    ],
+    "expected_keywords": [
+      "audible premium plus"
+    ]
+  },
+  {
+    "id": 60,
+    "query": "Quick question: What payment method is used for my streaming accounts?",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 61,
+    "query": "How much did I spend on subscriptions this month? (query 61)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 62,
+    "query": "Could you tell me: What is my total monthly subscription cost? (query 62)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 63,
+    "query": "Please check: Can you calculate my monthly recurring expenses? (query 63)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 64,
+    "query": "Quick question: What are my total subscription costs per month? (query 64)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 65,
+    "query": "Show me my monthly recurring bill total. (query 65)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 66,
+    "query": "Could you tell me: How much am I paying each month for recurring tools? (query 66)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 67,
+    "query": "Please check: Give me the total breakdown of monthly spending. (query 67)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 68,
+    "query": "Quick question: What does my monthly subscription bill add up to? (query 68)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 69,
+    "query": "How much money goes towards subscriptions every month? (query 69)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 70,
+    "query": "Could you tell me: Summarize my current monthly subscription expense. (query 70)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 71,
+    "query": "Please check: Which subscriptions are renewing next week? (query 71)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 72,
+    "query": "Quick question: What subscriptions renew in the next 7 days? (query 72)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 73,
+    "query": "Are there any subscriptions renewing soon? (query 73)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 74,
+    "query": "Could you tell me: Show me upcoming subscription renewal dates. (query 74)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 75,
+    "query": "Please check: What payments are due next week? (query 75)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 76,
+    "query": "Quick question: Which services will charge me in the next 14 days? (query 76)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 77,
+    "query": "List upcoming renewals for this month. (query 77)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 78,
+    "query": "Could you tell me: Do I have any bills coming up next week? (query 78)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 79,
+    "query": "Please check: Check when my next subscription will renew. (query 79)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 80,
+    "query": "Quick question: What renewals should I expect within two weeks? (query 80)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 81,
+    "query": "Which subscription categories consume most of my budget? (query 81)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 82,
+    "query": "Could you tell me: Break down my subscription expenses by category. (query 82)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 83,
+    "query": "Please check: How much do I spend on entertainment compared to cloud? (query 83)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "Netflix Premium",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 84,
+    "query": "Quick question: What percentage of my spend goes to developer tools? (query 84)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 85,
+    "query": "Show category-wise distribution of my recurring costs. (query 85)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 86,
+    "query": "Could you tell me: How much am I spending on cloud infrastructure? (query 86)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "DigitalOcean Droplets"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "digitalocean droplets"
+    ]
+  },
+  {
+    "id": 87,
+    "query": "Please check: What are my highest expense categories? (query 87)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 88,
+    "query": "Quick question: Provide a breakdown of software vs streaming services. (query 88)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 89,
+    "query": "Which category has the highest monthly recurring bill? (query 89)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 90,
+    "query": "Could you tell me: List all subscription categories with their monthly spend. (query 90)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 91,
+    "query": "Please check: How can I reduce my monthly subscription expenses? (query 91)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 92,
+    "query": "Quick question: Which subscriptions should I consider cancelling to save money? (query 92)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 93,
+    "query": "Are there low-utility subscriptions I can cut? (query 93)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 94,
+    "query": "Could you tell me: Where am I wasting money on recurring bills? (query 94)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 95,
+    "query": "Please check: Identify subscriptions with low ratings that are not essential. (query 95)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 96,
+    "query": "Quick question: How much could I save if I cancel unused services? (query 96)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 97,
+    "query": "Find potential cost savings in my subscription list. (query 97)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 98,
+    "query": "Could you tell me: Recommend unnecessary subscriptions to cancel this month. (query 98)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 99,
+    "query": "Please check: What are my least utilized subscriptions? (query 99)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 100,
+    "query": "Quick question: Help me trim my subscription budget by eliminating low value items. (query 100)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 101,
+    "query": "Which subscriptions cost me the most? (query 101)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 102,
+    "query": "Could you tell me: What is my single most expensive subscription? (query 102)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 103,
+    "query": "Please check: Rank my subscriptions from highest to lowest cost. (query 103)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 104,
+    "query": "Quick question: Show me the top 3 most expensive recurring accounts. (query 104)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 105,
+    "query": "What accounts have the highest monthly charge? (query 105)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 106,
+    "query": "Could you tell me: Which services cost more than $20 per month? (query 106)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 107,
+    "query": "Please check: List my biggest recurring expenses. (query 107)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 108,
+    "query": "Quick question: What are my priciest subscriptions right now? (query 108)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 109,
+    "query": "Identify top costly subscriptions in my portfolio. (query 109)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 110,
+    "query": "Could you tell me: Who takes the largest cut of my monthly subscription budget? (query 110)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 111,
+    "query": "Please check: How much do I pay for Netflix each month? (query 111)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 112,
+    "query": "Quick question: When does my Spotify subscription renew? (query 112)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 113,
+    "query": "What is the cost of my AWS account? (query 113)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 114,
+    "query": "Could you tell me: Is GitHub Copilot marked as essential? (query 114)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "GitHub Copilot Individual"
+    ],
+    "expected_keywords": [
+      "github copilot individual"
+    ]
+  },
+  {
+    "id": 115,
+    "query": "Please check: Show details for my ChatGPT Plus subscription. (query 115)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 116,
+    "query": "Quick question: When is my Disney+ renewal scheduled? (query 116)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Disney+ Bundle"
+    ],
+    "expected_keywords": [
+      "disney+ bundle"
+    ]
+  },
+  {
+    "id": 117,
+    "query": "How much does YouTube Premium cost me? (query 117)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "YouTube Premium"
+    ],
+    "expected_keywords": [
+      "youtube premium"
+    ]
+  },
+  {
+    "id": 118,
+    "query": "Could you tell me: What billing cycle is set for my cloud services? (query 118)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 119,
+    "query": "Please check: Check my Audible subscription status. (query 119)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Audible Premium Plus"
+    ],
+    "expected_keywords": [
+      "audible premium plus"
+    ]
+  },
+  {
+    "id": 120,
+    "query": "Quick question: What payment method is used for my streaming accounts? (query 120)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 121,
+    "query": "How much did I spend on subscriptions this month? (query 121)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 122,
+    "query": "Could you tell me: What is my total monthly subscription cost? (query 122)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 123,
+    "query": "Please check: Can you calculate my monthly recurring expenses? (query 123)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 124,
+    "query": "Quick question: What are my total subscription costs per month? (query 124)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 125,
+    "query": "Show me my monthly recurring bill total. (query 125)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 126,
+    "query": "Could you tell me: How much am I paying each month for recurring tools? (query 126)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 127,
+    "query": "Please check: Give me the total breakdown of monthly spending. (query 127)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 128,
+    "query": "Quick question: What does my monthly subscription bill add up to? (query 128)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 129,
+    "query": "How much money goes towards subscriptions every month? (query 129)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 130,
+    "query": "Could you tell me: Summarize my current monthly subscription expense. (query 130)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 131,
+    "query": "Please check: Which subscriptions are renewing next week? (query 131)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 132,
+    "query": "Quick question: What subscriptions renew in the next 7 days? (query 132)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 133,
+    "query": "Are there any subscriptions renewing soon? (query 133)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 134,
+    "query": "Could you tell me: Show me upcoming subscription renewal dates. (query 134)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 135,
+    "query": "Please check: What payments are due next week? (query 135)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 136,
+    "query": "Quick question: Which services will charge me in the next 14 days? (query 136)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 137,
+    "query": "List upcoming renewals for this month. (query 137)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 138,
+    "query": "Could you tell me: Do I have any bills coming up next week? (query 138)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 139,
+    "query": "Please check: Check when my next subscription will renew. (query 139)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 140,
+    "query": "Quick question: What renewals should I expect within two weeks? (query 140)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 141,
+    "query": "Which subscription categories consume most of my budget? (query 141)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 142,
+    "query": "Could you tell me: Break down my subscription expenses by category. (query 142)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 143,
+    "query": "Please check: How much do I spend on entertainment compared to cloud? (query 143)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "Netflix Premium",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 144,
+    "query": "Quick question: What percentage of my spend goes to developer tools? (query 144)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 145,
+    "query": "Show category-wise distribution of my recurring costs. (query 145)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 146,
+    "query": "Could you tell me: How much am I spending on cloud infrastructure? (query 146)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "DigitalOcean Droplets"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "digitalocean droplets"
+    ]
+  },
+  {
+    "id": 147,
+    "query": "Please check: What are my highest expense categories? (query 147)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 148,
+    "query": "Quick question: Provide a breakdown of software vs streaming services. (query 148)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 149,
+    "query": "Which category has the highest monthly recurring bill? (query 149)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 150,
+    "query": "Could you tell me: List all subscription categories with their monthly spend. (query 150)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 151,
+    "query": "Please check: How can I reduce my monthly subscription expenses? (query 151)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 152,
+    "query": "Quick question: Which subscriptions should I consider cancelling to save money? (query 152)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 153,
+    "query": "Are there low-utility subscriptions I can cut? (query 153)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 154,
+    "query": "Could you tell me: Where am I wasting money on recurring bills? (query 154)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 155,
+    "query": "Please check: Identify subscriptions with low ratings that are not essential. (query 155)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 156,
+    "query": "Quick question: How much could I save if I cancel unused services? (query 156)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 157,
+    "query": "Find potential cost savings in my subscription list. (query 157)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 158,
+    "query": "Could you tell me: Recommend unnecessary subscriptions to cancel this month. (query 158)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 159,
+    "query": "Please check: What are my least utilized subscriptions? (query 159)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 160,
+    "query": "Quick question: Help me trim my subscription budget by eliminating low value items. (query 160)",
+    "intent": "savings_recommendation",
+    "expected_target_records": [
+      "Peacock Premium",
+      "SoundCloud Go+"
+    ],
+    "expected_keywords": [
+      "peacock premium",
+      "soundcloud go+"
+    ]
+  },
+  {
+    "id": 161,
+    "query": "Which subscriptions cost me the most? (query 161)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 162,
+    "query": "Could you tell me: What is my single most expensive subscription? (query 162)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 163,
+    "query": "Please check: Rank my subscriptions from highest to lowest cost. (query 163)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 164,
+    "query": "Quick question: Show me the top 3 most expensive recurring accounts. (query 164)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 165,
+    "query": "What accounts have the highest monthly charge? (query 165)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 166,
+    "query": "Could you tell me: Which services cost more than $20 per month? (query 166)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 167,
+    "query": "Please check: List my biggest recurring expenses. (query 167)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 168,
+    "query": "Quick question: What are my priciest subscriptions right now? (query 168)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 169,
+    "query": "Identify top costly subscriptions in my portfolio. (query 169)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 170,
+    "query": "Could you tell me: Who takes the largest cut of my monthly subscription budget? (query 170)",
+    "intent": "most_expensive",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 171,
+    "query": "Please check: How much do I pay for Netflix each month? (query 171)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 172,
+    "query": "Quick question: When does my Spotify subscription renew? (query 172)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 173,
+    "query": "What is the cost of my AWS account? (query 173)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 174,
+    "query": "Could you tell me: Is GitHub Copilot marked as essential? (query 174)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "GitHub Copilot Individual"
+    ],
+    "expected_keywords": [
+      "github copilot individual"
+    ]
+  },
+  {
+    "id": 175,
+    "query": "Please check: Show details for my ChatGPT Plus subscription. (query 175)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 176,
+    "query": "Quick question: When is my Disney+ renewal scheduled? (query 176)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Disney+ Bundle"
+    ],
+    "expected_keywords": [
+      "disney+ bundle"
+    ]
+  },
+  {
+    "id": 177,
+    "query": "How much does YouTube Premium cost me? (query 177)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "YouTube Premium"
+    ],
+    "expected_keywords": [
+      "youtube premium"
+    ]
+  },
+  {
+    "id": 178,
+    "query": "Could you tell me: What billing cycle is set for my cloud services? (query 178)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 179,
+    "query": "Please check: Check my Audible subscription status. (query 179)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Audible Premium Plus"
+    ],
+    "expected_keywords": [
+      "audible premium plus"
+    ]
+  },
+  {
+    "id": 180,
+    "query": "Quick question: What payment method is used for my streaming accounts? (query 180)",
+    "intent": "service_lookup",
+    "expected_target_records": [
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 181,
+    "query": "How much did I spend on subscriptions this month? (query 181)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 182,
+    "query": "Could you tell me: What is my total monthly subscription cost? (query 182)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 183,
+    "query": "Please check: Can you calculate my monthly recurring expenses? (query 183)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 184,
+    "query": "Quick question: What are my total subscription costs per month? (query 184)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 185,
+    "query": "Show me my monthly recurring bill total. (query 185)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 186,
+    "query": "Could you tell me: How much am I paying each month for recurring tools? (query 186)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 187,
+    "query": "Please check: Give me the total breakdown of monthly spending. (query 187)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 188,
+    "query": "Quick question: What does my monthly subscription bill add up to? (query 188)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 189,
+    "query": "How much money goes towards subscriptions every month? (query 189)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 190,
+    "query": "Could you tell me: Summarize my current monthly subscription expense. (query 190)",
+    "intent": "spending_summary",
+    "expected_target_records": [
+      "Netflix Premium",
+      "Spotify Premium"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "spotify premium"
+    ]
+  },
+  {
+    "id": 191,
+    "query": "Please check: Which subscriptions are renewing next week? (query 191)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 192,
+    "query": "Quick question: What subscriptions renew in the next 7 days? (query 192)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 193,
+    "query": "Are there any subscriptions renewing soon? (query 193)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 194,
+    "query": "Could you tell me: Show me upcoming subscription renewal dates. (query 194)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 195,
+    "query": "Please check: What payments are due next week? (query 195)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 196,
+    "query": "Quick question: Which services will charge me in the next 14 days? (query 196)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 197,
+    "query": "List upcoming renewals for this month. (query 197)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 198,
+    "query": "Could you tell me: Do I have any bills coming up next week? (query 198)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 199,
+    "query": "Please check: Check when my next subscription will renew. (query 199)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 200,
+    "query": "Quick question: What renewals should I expect within two weeks? (query 200)",
+    "intent": "upcoming_renewals",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 201,
+    "query": "Which subscription categories consume most of my budget? (query 201)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 202,
+    "query": "Could you tell me: Break down my subscription expenses by category. (query 202)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 203,
+    "query": "Please check: How much do I spend on entertainment compared to cloud? (query 203)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "Netflix Premium",
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "netflix premium",
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 204,
+    "query": "Quick question: What percentage of my spend goes to developer tools? (query 204)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "ChatGPT Plus"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "chatgpt plus"
+    ]
+  },
+  {
+    "id": 205,
+    "query": "Show category-wise distribution of my recurring costs. (query 205)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 206,
+    "query": "Could you tell me: How much am I spending on cloud infrastructure? (query 206)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "DigitalOcean Droplets"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "digitalocean droplets"
+    ]
+  },
+  {
+    "id": 207,
+    "query": "Please check: What are my highest expense categories? (query 207)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 208,
+    "query": "Quick question: Provide a breakdown of software vs streaming services. (query 208)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "GitHub Copilot Individual",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "github copilot individual",
+      "netflix premium"
+    ]
+  },
+  {
+    "id": 209,
+    "query": "Which category has the highest monthly recurring bill? (query 209)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier"
+    ]
+  },
+  {
+    "id": 210,
+    "query": "Could you tell me: List all subscription categories with their monthly spend. (query 210)",
+    "intent": "category_breakdown",
+    "expected_target_records": [
+      "AWS Cloud Dev Tier",
+      "Netflix Premium"
+    ],
+    "expected_keywords": [
+      "aws cloud dev tier",
+      "netflix premium"
+    ]
+  }
+]

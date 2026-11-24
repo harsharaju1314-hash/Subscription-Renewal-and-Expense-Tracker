@@ -1,0 +1,197 @@
+version: '3.8'
+
+services:
+  # MySQL Relational Database (Normalized schema, compound indexing)
+  mysql:
+    image: mysql:8.0
+    container_name: subtrack_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-subscription_db}
+      MYSQL_USER: ${MYSQL_USER:-sub_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-sub_password}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - subtrack_network
+
+  # Redis In-Memory Cache & Rate Limiting
+  redis:
+    image: redis:7-alpine
+    container_name: subtrack_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_secure_pass_2026}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD:-redis_secure_pass_2026}", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - subtrack_network
+
+  # Flask Internal Analytics Service (Decimal precision arithmetic & report aggregation)
+  analytics-service:
+    build:
+      context: ./analytics-service
+      dockerfile: Dockerfile
+    container_name: subtrack_analytics
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      - ENVIRONMENT=production
+      - HOST=0.0.0.0
+      - PORT=5001
+      - INTERNAL_SERVICE_SECRET=${INTERNAL_SERVICE_SECRET:-internal-analytics-shared-secret-key-prod-2026}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - subtrack_network
+
+  # FastAPI Core REST API Backend
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: subtrack_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=False
+      - SECRET_KEY=${SECRET_KEY:-production_secret_key_change_me_minimum_32_chars}
+      - DATABASE_URL=mysql+pymysql://${MYSQL_USER:-sub_user}:${MYSQL_PASSWORD:-sub_password}@mysql:3306/${MYSQL_DATABASE:-subscription_db}
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-redis_secure_pass_2026}@redis:6379/0
+      - ANALYTICS_SERVICE_URL=http://analytics-service:5001
+      - INTERNAL_SERVICE_SECRET=${INTERNAL_SERVICE_SECRET:-internal-analytics-shared-secret-key-prod-2026}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-text-embedding-3-small}
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      analytics-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - subtrack_network
+
+  # Angular 17+ Frontend UI with Nginx Reverse Proxy
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    container_name: subtrack_frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+      - analytics-service
+    networks:
+      - subtrack_network
+
+  # Prometheus Telemetry & Metrics Scraper
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: subtrack_prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+      - "--web.enable-lifecycle"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      - backend
+      - analytics-service
+    networks:
+      - subtrack_network
+
+  # Grafana Dashboards & Visualizations
+  grafana:
+    image: grafana/grafana:10.4.1
+    container_name: subtrack_grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin_secure_password_2026}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./monitoring/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - subtrack_network
+
+  # Prometheus MySQL Exporter
+  mysql-exporter:
+    image: prom/mysqld-exporter:v0.15.1
+    container_name: subtrack_mysql_exporter
+    restart: unless-stopped
+    environment:
+      - DATA_SOURCE_NAME=root:${MYSQL_ROOT_PASSWORD:-root_password}@(mysql:3306)/
+    ports:
+      - "9104:9104"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - subtrack_network
+
+  # Prometheus Redis Exporter
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.58.0
+    container_name: subtrack_redis_exporter
+    restart: unless-stopped
+    environment:
+      - REDIS_ADDR=redis://redis:6379
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis_secure_pass_2026}
+    ports:
+      - "9121:9121"
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - subtrack_network
+
+volumes:
+  mysql_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  subtrack_network:
+    driver: bridge

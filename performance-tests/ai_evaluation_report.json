@@ -1,0 +1,16 @@
+{
+  "evaluation_timestamp": "2026-11-24T15:14:57Z",
+  "total_queries_evaluated": 210,
+  "retrieval_accuracy_pct": 95.24,
+  "target_retrieval_accuracy_pct": 92.0,
+  "retrieval_accuracy_met": true,
+  "average_precision_pct": 26.38,
+  "average_recall_pct": 72.38,
+  "answer_correctness_pct": 100.0,
+  "baseline_latency_ms": 8.58,
+  "optimized_latency_ms": 0.45,
+  "latency_reduction_pct": 94.76,
+  "target_latency_reduction_pct": 35.0,
+  "latency_target_met": true,
+  "eval_dataset_path": "C:\\Users\\harsh\\.gemini\\antigravity\\scratch\\Subscription-Renewal-and-Expense-Tracker\\ai\\eval\\golden_dataset.json"
+}

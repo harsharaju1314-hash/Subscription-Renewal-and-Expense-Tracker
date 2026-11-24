@@ -1,0 +1,17 @@
+{
+  "benchmark_timestamp": "2026-11-24T15:28:06Z",
+  "total_records_tested": 1050,
+  "query_iterations": 3000,
+  "baseline_unindexed_total_sec": 1.1473,
+  "baseline_unindexed_avg_query_ms": 0.3824,
+  "optimized_indexed_total_sec": 0.2774,
+  "optimized_indexed_avg_query_ms": 0.0925,
+  "performance_improvement_pct": 75.82,
+  "target_improvement_pct": 40.0,
+  "target_met": true,
+  "compound_indexes_created": [
+    "subscriptions(user_id, status, renewal_date)",
+    "subscriptions(user_id, category_id)",
+    "expenses(user_id, expense_date)"
+  ]
+}

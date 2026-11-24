@@ -1,0 +1,98 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "id": 1,
+      "title": "AI Query Invocations (Queries/sec)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(ai_requests_total[1m]))",
+          "legendFormat": "AI Inferences/sec",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "reqps" }
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "id": 2,
+      "title": "RAG Response Latency (P50, P95)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(ai_response_duration_seconds_bucket[1m])) by (le))",
+          "legendFormat": "P50 AI Latency",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(ai_response_duration_seconds_bucket[1m])) by (le))",
+          "legendFormat": "P95 AI Latency",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "s" }
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "id": 3,
+      "title": "FAISS Vector Search Latency vs LLM Generation",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(ai_faiss_search_duration_seconds_sum[1m]) / rate(ai_faiss_search_duration_seconds_count[1m])",
+          "legendFormat": "FAISS Semantic Search",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(ai_llm_generation_duration_seconds_sum[1m]) / rate(ai_llm_generation_duration_seconds_count[1m])",
+          "legendFormat": "LLM Synthesis Time",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "s" }
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "id": 4,
+      "title": "LLM Failure Rate & Fallback Triggered",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "sum(rate(ai_llm_errors_total[5m]))",
+          "legendFormat": "LLM API Errors/sec",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "none" }
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["ai", "rag", "faiss", "langchain"],
+  "time": { "from": "now-30m", "to": "now" },
+  "timepicker": { "refresh_intervals": ["5s", "10s", "30s", "1m"] },
+  "timezone": "browser",
+  "title": "AI Assistant & RAG Pipeline Observability",
+  "uid": "ai-rag-observability"
+}

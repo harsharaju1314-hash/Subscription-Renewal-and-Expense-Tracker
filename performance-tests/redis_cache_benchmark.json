@@ -1,0 +1,20 @@
+{
+  "benchmark_timestamp": "2026-11-24T15:36:36Z",
+  "endpoint_tested": "/api/v1/analytics/summary",
+  "sample_size": 20,
+  "cache_backend": "in_memory_lru",
+  "uncached_metrics": {
+    "mean_ms": 905.543,
+    "p50_ms": 817.832,
+    "p95_ms": 1765.596
+  },
+  "cached_metrics": {
+    "mean_ms": 9.218,
+    "p50_ms": 8.837,
+    "p95_ms": 12.797
+  },
+  "latency_reduction_pct": 98.98,
+  "target_reduction_pct": 30.0,
+  "target_met": true,
+  "cache_hit_ratio_pct": 100.0
+}

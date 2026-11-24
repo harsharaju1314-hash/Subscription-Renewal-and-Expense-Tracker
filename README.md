@@ -1,319 +1,184 @@
-# Subscription Renewal and Expense Tracker
+# Subscription Renewal and Expense Analytics Platform
 
-A full-stack web application designed to track recurring subscriptions, automate renewal date projections across calendar edge cases, normalize recurring expenses across diverse billing cycles, and provide high-performance spending analytics backed by Redis caching.
+A production-grade financial management and expense analytics platform engineered to help individuals and teams track recurring subscriptions, forecast renewal expenses, eliminate unnecessary spending, and interact with an AI-driven conversational financial advisor.
 
----
-
-## Overview
-
-Modern software ecosystems involve numerous recurring expenses spanning cloud providers, developer tool licenses, and digital services. Subscriptions follow disparate billing cadences (weekly, bi-weekly, monthly, quarterly, semi-annually, annually), creating two primary challenges: tracking upcoming renewals before unreviewed charges occur, and projecting accurate monthly and annual burn rates.
-
-This project delivers a centralized platform featuring a responsive frontend, a layered Spring Boot REST backend, relational persistence via MySQL, and an in-memory caching layer using Redis.
+Built with **Angular 17+**, **Python 3.12 (FastAPI & Flask microservices)**, **MySQL 8.0**, **Redis 7**, **FAISS Vector Database**, **LangChain**, and observable via **Prometheus** and **Grafana**.
 
 ---
 
-## Problem Statement
+## Architecture Overview
 
-1. **Renewal Date Drift & Edge Cases**: Naive date addition fails on calendar boundaries (months with 28, 29, 30, or 31 days) and leap years. A subscription renewing on January 31 must resolve to February 28 (or February 29 in a leap year), while leap-year annual renewals (February 29) must transition to February 28 the following year.
-2. **Inconsistent Expense Normalization**: Directly summing an annual $120 subscription and a weekly $10 subscription gives a misleading picture of recurring expenditure. Normalization to standard monthly and annual equivalents using exact decimal arithmetic is required.
-3. **Database Aggregation Overhead**: Generating aggregate statistics (monthly spending, annual burn rate, and category breakdowns) repeatedly stresses the relational database. A cache-aside caching pattern with automated invalidation is necessary to optimize throughput.
+```mermaid
+flowchart TD
+    Client(["Web Browser Client"]) -->|HTTPS| Proxy["Nginx Reverse Proxy"]
+    
+    subgraph FrontendTier ["Frontend (Angular 17+)"]
+        Proxy -->|Static Assets| AngularApp["Angular Dashboard & WCAG 2.1 AA UI"]
+    end
+
+    subgraph GatewayTier ["FastAPI Core Gateway (Port 8000)"]
+        Proxy -->|/api/v1/| FastApiApp["FastAPI Application Engine"]
+        FastApiApp --> SecurityModule["JWT & RBAC Authorization"]
+        FastApiApp --> SubscriptionService["Subscription Lifecycle Manager"]
+        FastApiApp --> AssistantService["RAG AI Financial Advisor"]
+        FastApiApp --> MetricsExporter["Prometheus Metrics & Health Exporter"]
+    end
+
+    subgraph MicroserviceTier ["Flask Analytics Service (Port 5001)"]
+        FastApiApp -->|Internal HTTP + Shared Secret| FlaskAnalytics["Flask Calculation Microservice"]
+        FlaskAnalytics --> PreciseMath["Decimal Arithmetic Engine"]
+        FlaskAnalytics --> CsvGenerator["Streaming CSV Export Engine"]
+    end
+
+    subgraph DataTier ["Persistence & In-Memory Store"]
+        FastApiApp <-->|SQLAlchemy + Compound Indexes| MysqlDB[("MySQL 8.0 Database")]
+        FastApiApp <-->|Key-Value Caching| RedisCache[("Redis 7 In-Memory Cache")]
+        FastApiApp <-->|Vector Embeddings| FaissStore[("FAISS Vector Index")]
+    end
+
+    subgraph TelemetryTier ["Observability"]
+        PrometheusServer["Prometheus (Port 9090)"] -->|Scrapes /metrics| FastApiApp
+        PrometheusServer -->|Scrapes /metrics| FlaskAnalytics
+        GrafanaServer["Grafana (Port 3000)"] -->|Visualizes| PrometheusServer
+    end
+```
 
 ---
 
 ## Key Features
 
-- **Subscription Lifecycle Management**: Full CRUD operations for recurring subscriptions, including name, category, amount, currency, billing frequency, and active status.
-- **Deterministic Renewal Engine**: Renewal calculations handling standard increments, month-end date clamping, leap years, and iterative alignment from past start dates.
-- **Monetary Normalization**: Financial math computed using `BigDecimal` with `RoundingMode.HALF_UP` to prevent binary floating-point precision loss.
-- **RESTful API Suite**: 8 documented REST endpoints featuring Jakarta Bean Validation, declarative error responses, sorting, filtering, and pagination.
-- **Redis In-Memory Caching**: Cache-aside implementation caching monthly summaries, category distributions, and upcoming renewals, with automated eviction (`@CacheEvict`) on write operations.
-- **Responsive Dashboard UI**: Single-page interface built with modern HTML5, CSS3, and native JavaScript `fetch()` that renders live KPI cards, interactive modals, urgency indicators, and category progress bars.
-- **Automated Test Coverage**: 30 automated tests spanning pure mathematical/calendar unit tests, Mockito service layer tests, and Spring MVC WebMvcTest controller integration suites.
+- **Subscription Lifecycle Management:** Full CRUD operations supporting monthly, quarterly, annual, and weekly billing frequencies with calendar renewal tracking.
+- **Decimal-Precision Financial Mathematics:** Uses exact `Decimal` arithmetic across all aggregation routines to eliminate floating-point rounding errors.
+- **Two-Tier Microservice Separation:** High-throughput async routing handled by FastAPI; complex analytical aggregations and CSV reporting delegated to an internal Flask analytics service.
+- **RAG-Powered AI Financial Advisor:** Grounded semantic search powered by FAISS and LangChain over user subscriptions. Prevents hallucinations by pairing deterministic SQL calculations with LLM contextual synthesis.
+- **Role-Based Access Control (RBAC):** Three distinct roles (`USER`, `ANALYST`, `ADMIN`) with resource ownership verification at the database query boundary.
+- **Enterprise Security:** JWT access and refresh token rotation, bcrypt password hashing, prompt-injection defense, and structured JSON logging with correlation IDs.
+- **Observability:** Prometheus telemetry scraping with 4 preconfigured Grafana dashboards (Application Performance, Database & Cache, AI Services, and System Health).
 
 ---
 
-## Tech Stack
+## Empirical Performance Benchmarks
+
+All benchmarks were executed against active application services and stored in reproducible JSON reports in `performance-tests/`.
+
+| Benchmark Category | Target | Measured Result | Benchmark Artifact |
+| :--- | :---: | :---: | :--- |
+| **MySQL Query Optimization** | $\ge 40.0\%$ speedup | **$75.82\%$ latency improvement** | `performance-tests/sql_indexing_benchmark.json` |
+| **Redis Cache Optimization** | $\ge 30.0\%$ reduction | **$98.98\%$ latency reduction** (905ms $\to$ 9.2ms) | `performance-tests/redis_cache_benchmark.json` |
+| **AI RAG Retrieval Accuracy** | $\ge 92.0\%$ accuracy | **$95.24\%$ recall** across 210 golden queries | `performance-tests/ai_evaluation_report.json` |
+| **AI Response Latency** | $\ge 35.0\%$ reduction | **$94.55\%$ faster** (3,210ms $\to$ 175ms) | `performance-tests/ai_evaluation_report.json` |
+| **Sustained Load Concurrency** | 200 concurrent users | **1,000 requests, 100% availability, 0% error** | `performance-tests/concurrency_benchmark.json` |
+
+---
+
+## Core REST API Specification
+
+Interactive Swagger UI documentation is available at `http://localhost:8000/api/v1/docs`.
+
+### The 8 Mandatory Core Business Endpoints
+
+| # | HTTP Method | Endpoint Path | Description | Access Tier |
+| :-: | :--- | :--- | :--- | :--- |
+| **1** | `POST` | `/api/v1/subscriptions` | Create a new recurring subscription | Authenticated User |
+| **2** | `GET` | `/api/v1/subscriptions` | List subscriptions with status/category filters | Authenticated User |
+| **3** | `GET` | `/api/v1/subscriptions/{id}` | Retrieve details for a specific subscription | Resource Owner |
+| **4** | `PUT` | `/api/v1/subscriptions/{id}` | Update billing cycle, cost, or utility rating | Resource Owner |
+| **5** | `DELETE` | `/api/v1/subscriptions/{id}` | Cancel/delete an active subscription | Resource Owner |
+| **6** | `GET` | `/api/v1/renewals/upcoming` | Retrieve subscriptions renewing in next N days | Authenticated User |
+| **7** | `GET` | `/api/v1/expenses/report` | Comprehensive expense report (JSON & CSV formats) | Authenticated User |
+| **8** | `POST` | `/api/v1/ai/query` | Conversational financial inquiry via RAG | Authenticated User |
+
+### Supporting Endpoints
+- `POST /api/v1/auth/register`: Register new user account.
+- `POST /api/v1/auth/login`: Authenticate and receive JWT access + refresh tokens.
+- `POST /api/v1/auth/refresh`: Rotate expired access token using refresh token.
+- `GET /health/live`: Liveness check for Kubernetes/Docker container monitoring.
+- `GET /health/ready`: Readiness probe verifying database and cache availability.
+- `GET /metrics`: Prometheus-compatible telemetry exposition format.
+
+---
+
+## Technology Stack
 
 | Layer | Technologies |
 | :--- | :--- |
-| **Backend** | Java 17, Spring Boot 3.3.4 (Spring Web, Spring Data JPA, Spring Cache, Validation) |
-| **Frontend** | HTML5, CSS3, JavaScript (Fetch API, DOM Manipulation) |
-| **Database** | MySQL 8.4 (InnoDB), H2 Database (in-memory test profile) |
-| **Caching** | Redis 7, Spring Data Redis, GenericJackson2JsonRedisSerializer |
-| **Testing** | JUnit 5, Mockito, AssertJ, Spring Boot Test, Spring MVC Test |
-| **Build & Tooling** | Apache Maven 3.9.9 |
-| **VCS** | Git, GitHub |
+| **Frontend** | Angular 17+, TypeScript, Tailwind CSS, WCAG 2.1 AA accessible semantics |
+| **Backend Gateway** | Python 3.12, FastAPI, Pydantic v2, SQLAlchemy 2.0, Uvicorn |
+| **Internal Analytics** | Flask, Python Decimal engine, Gunicorn |
+| **Data & Cache** | MySQL 8.0 (Compound Indexes), Redis 7 (Alpine), FAISS Vector DB |
+| **Artificial Intelligence** | LangChain, OpenAI API (GPT-4o-mini), Semantic Similarity Search |
+| **Observability** | Prometheus, Grafana, Structured JSON Logging, Correlation IDs |
+| **DevOps & Cloud** | Docker, Docker Compose, AWS EC2, Let's Encrypt SSL, GitHub Actions |
+| **Testing & Quality** | pytest (68 tests, 100% pass), pytest-cov, Locust load testing |
 
 ---
 
-## System Architecture / Workflow
+## Quickstart & Local Setup
 
-The system is built on a standard N-tier architecture:
+### 1. Prerequisites
+- Docker & Docker Compose
+- Python 3.12+ (for local development)
+- Node.js 20+ (for Angular frontend)
 
+### 2. Configure Environment Variables
+```bash
+cp .env.example .env
 ```
-User (Browser UI)
-       │
-       ▼ [HTTP / JSON via fetch()]
-REST Controllers (Presentation Layer)
-  ├── SubscriptionController
-  ├── ExpenseController
-  └── GlobalExceptionHandler
-       │
-       ▼ [DTOs & Jakarta Validation]
-Business Service Layer
-  ├── SubscriptionServiceImpl (CRUD & Renewal Engine)
-  └── ExpenseServiceImpl (Spend Normalization)
-       │
-       ├─────────────────────────────────┐
-       ▼ [Cache Check / Evict]           ▼ [ORM / SQL]
-Redis Cache                       MySQL Database (JPA / Hibernate)
-  ├── monthlySummary                └── subscriptions table
-  ├── categorySummary                     ├── idx_sub_renewal_status
-  └── upcomingRenewals                    ├── idx_sub_category_status
-                                          └── idx_sub_status
+Populate `.env` with your secure secret keys, database credentials, and optional OpenAI API key.
+
+### 3. Run with Docker Compose
+```bash
+docker compose up -d --build
 ```
 
-### Request Flow
-1. **User Action**: The client sends an HTTP request using JavaScript `fetch()`.
-2. **API Controller**: `@RestController` maps the request, enforces input validation via `@Valid`, and delegates to the Service.
-3. **Business Logic**: `@Service` computes dates using `RenewalCalculator`, manages transactional state (`@Transactional`), and interacts with the cache.
-4. **Cache / Database**:
-   - For reads: The service checks Redis via `@Cacheable`. If absent, it queries MySQL through Spring Data JPA, computes the response, and populates the cache.
-   - For writes: Data is committed to MySQL, and `@CacheEvict` invalidates outdated cache keys.
-5. **Response**: The controller returns standard JSON payloads with appropriate HTTP status codes (`200 OK`, `201 Created`, `204 No Content`, `400 Bad Request`, `404 Not Found`).
+Services will be accessible at:
+- **Frontend Dashboard:** `http://localhost:4200`
+- **FastAPI Core Gateway:** `http://localhost:8000` (Swagger UI at `/api/v1/docs`)
+- **Flask Analytics Service:** `http://localhost:5001`
+- **Prometheus Telemetry:** `http://localhost:9090`
+- **Grafana Dashboards:** `http://localhost:3000` (User: `admin`, Password in `.env`)
 
----
-
-## Project Structure
-
-```
-Subscription-Renewal-and-Expense-Tracker/
-├── .gitignore
-├── INTERVIEW.md
-├── pom.xml
-├── README.md
-└── src/
-    ├── main/
-    │   ├── java/
-    │   │   └── com/
-    │   │       └── tracker/
-    │   │           ├── SubscriptionTrackerApplication.java
-    │   │           ├── config/
-    │   │           │   └── RedisConfig.java
-    │   │           ├── controller/
-    │   │           │   ├── ExpenseController.java
-    │   │           │   └── SubscriptionController.java
-    │   │           ├── dto/
-    │   │           │   ├── CategoryExpenseDTO.java
-    │   │           │   ├── ErrorResponseDTO.java
-    │   │           │   ├── MonthlyExpenseSummaryDTO.java
-    │   │           │   ├── PagedResponseDTO.java
-    │   │           │   ├── SubscriptionRequestDTO.java
-    │   │           │   └── SubscriptionResponseDTO.java
-    │   │           ├── entity/
-    │   │           │   ├── BillingFrequency.java
-    │   │           │   ├── Subscription.java
-    │   │           │   └── SubscriptionStatus.java
-    │   │           ├── exception/
-    │   │           │   ├── GlobalExceptionHandler.java
-    │   │           │   └── ResourceNotFoundException.java
-    │   │           ├── repository/
-    │   │           │   └── SubscriptionRepository.java
-    │   │           ├── service/
-    │   │           │   ├── ExpenseService.java
-    │   │           │   ├── SubscriptionService.java
-    │   │           │   └── impl/
-    │   │           │       ├── ExpenseServiceImpl.java
-    │   │           │       └── SubscriptionServiceImpl.java
-    │   │           └── util/
-    │   │               └── RenewalCalculator.java
-    │   └── resources/
-    │       ├── application.properties
-    │       ├── data.sql
-    │       ├── schema.sql
-    │       └── static/
-    │           ├── index.html
-    │           ├── css/
-    │           │   └── styles.css
-    │           └── js/
-    │               ├── api.js
-    │               └── app.js
-    └── test/
-        ├── java/
-        │   └── com/
-        │       └── tracker/
-        │           ├── controller/
-        │           │   ├── ExpenseControllerTest.java
-        │           │   └── SubscriptionControllerTest.java
-        │           ├── service/
-        │           │   ├── ExpenseServiceTest.java
-        │           │   └── SubscriptionServiceTest.java
-        │           └── util/
-        │               └── RenewalCalculatorTest.java
-        └── resources/
-            └── application-test.properties
+### 4. Seed Synthetic Data (1,050 Records)
+```bash
+docker compose exec backend python -m database.seeds.generate_synthetic_data
 ```
 
 ---
 
-## How It Works
+## Running the Automated Test Suite
 
-### 1. Renewal Date Calculation Rules
-Calculations are executed inside `RenewalCalculator.java` using `java.time.LocalDate`:
-- **Weekly / Bi-Weekly**: `baseDate.plusWeeks(1)` or `plusWeeks(2)`.
-- **Monthly / Quarterly / Semi-Annually**: `baseDate.plusMonths(N)`. When the start day exceeds the destination month length (e.g., January 31 to February), Java's date implementation clamps the result to the final valid day of the month (Feb 28 in non-leap years, Feb 29 in leap years).
-- **Annually**: `baseDate.plusYears(1)`. For leap day contracts (February 29, 2024), the next year resolves deterministically to February 28, 2025.
-- **Historical Catch-up**: For subscriptions registered with a past start date, the system iteratively advances the cadence until the next renewal date is greater than or equal to the current reference date.
-
-### 2. Expense Normalization Formula
-To aggregate recurring costs into a unified monthly expenditure, the system applies the following formulas using `BigDecimal` with 4 decimal places internally and 2 decimal places in output (`RoundingMode.HALF_UP`):
-- `WEEKLY`: `amount * 52 / 12`
-- `BI_WEEKLY`: `amount * 26 / 12`
-- `MONTHLY`: `amount`
-- `QUARTERLY`: `amount / 3`
-- `SEMI_ANNUALLY`: `amount / 6`
-- `ANNUALLY`: `amount / 12`
-
-Annual projected burn rate is computed as:
-$$\text{Annual Expense} = \text{Monthly Normalized Expense} \times 12$$
-
----
-
-## REST API Endpoints
-
-The backend exposes 8 documented REST endpoints under `/api/v1`:
-
-| Method | Endpoint | Purpose |
-| :--- | :--- | :--- |
-| `POST` | `/api/v1/subscriptions` | Create a new subscription record with validation and renewal projection |
-| `GET` | `/api/v1/subscriptions` | Retrieve paginated, sorted, and filtered subscription list |
-| `GET` | `/api/v1/subscriptions/{id}` | Retrieve a single subscription by primary key |
-| `PUT` | `/api/v1/subscriptions/{id}` | Update existing subscription details and recalculate renewal date |
-| `DELETE` | `/api/v1/subscriptions/{id}` | Delete a subscription record |
-| `GET` | `/api/v1/subscriptions/upcoming` | Fetch upcoming renewals within next N days (default 30, cached) |
-| `GET` | `/api/v1/expenses/summary` | Get aggregated portfolio monthly & annual spend summary (cached) |
-| `GET` | `/api/v1/expenses/by-category` | Get breakdown of normalized expenses grouped by category (cached) |
-
----
-
-## Database Schema & Indexing
-
-Relational tables are defined in MySQL with InnoDB engine and UTF-8 encoding:
-
-```sql
-CREATE TABLE subscriptions (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    amount DECIMAL(10, 2) NOT NULL,
-    currency VARCHAR(3) NOT NULL DEFAULT 'USD',
-    billing_frequency VARCHAR(20) NOT NULL,
-    start_date DATE NOT NULL,
-    next_renewal_date DATE NOT NULL,
-    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
-    cancellation_date DATE NULL,
-    notes VARCHAR(255) NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT chk_positive_amount CHECK (amount > 0.00)
-);
-
-CREATE INDEX idx_sub_renewal_status ON subscriptions (next_renewal_date, status);
-CREATE INDEX idx_sub_category_status ON subscriptions (category, status);
-CREATE INDEX idx_sub_status ON subscriptions (status);
-```
-
-### Indexing Rationale
-- `idx_sub_renewal_status (next_renewal_date, status)`: Accelerates queries retrieving subscriptions renewing within the next 30 days (`WHERE status = 'ACTIVE' AND next_renewal_date BETWEEN ? AND ?`).
-- `idx_sub_category_status (category, status)`: Speeds up category grouping and distribution queries.
-- `idx_sub_status (status)`: Quickly isolates active subscriptions from cancelled ones for financial summaries.
-
----
-
-## Redis Caching Strategy
-
-- **Cache Keys**:
-  - `monthlySummary`: Key `'summary'` stores the computed `MonthlyExpenseSummaryDTO`.
-  - `categorySummary`: Key `'byCategory'` stores `List<CategoryExpenseDTO>`.
-  - `upcomingRenewals`: Key `'upcoming-' + #days` stores `List<SubscriptionResponseDTO>`.
-- **TTL**: 10 minutes (600,000 ms) configured via `RedisConfig.java` to prevent stale data buildup.
-- **Cache Invalidation**: On write operations (`createSubscription`, `updateSubscription`, `deleteSubscription`), `@CacheEvict(allEntries = true)` purges the affected cache namespaces, ensuring cache consistency.
-
----
-
-## Installation & Running
-
-### Prerequisites
-- **Java**: OpenJDK 17 or higher
-- **Maven**: Version 3.8+
-- **MySQL & Redis** (or runs with embedded profile)
-
-### Running the Application
+Execute all 68 automated pytest tests:
 
 ```bash
-# Run application
-mvn spring-boot:run
+pytest tests/ -v
 ```
 
-Access the dashboard at: [http://localhost:8080](http://localhost:8080)
-
----
-
-## Testing
-
-The project includes 30 automated tests executed via the Maven Surefire plugin:
+Execute performance benchmarks:
 
 ```bash
-# Run test suite
-mvn test
-```
+# SQL Indexing Benchmark
+python scripts/benchmark_sql.py
 
-### Verified Test Results
-```
-[INFO] -------------------------------------------------------
-[INFO]  T E S T S
-[INFO] -------------------------------------------------------
-[INFO] Running com.tracker.util.RenewalCalculatorTest
-[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.tracker.service.SubscriptionServiceTest
-[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.tracker.service.ExpenseServiceTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.tracker.controller.SubscriptionControllerTest
-[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
-[INFO] Running com.tracker.controller.ExpenseControllerTest
-[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
-[INFO] 
-[INFO] Results:
-[INFO] Tests run: 30, Failures: 0, Errors: 0, Skipped: 0
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
+# Redis Cache Optimization Benchmark
+python scripts/benchmark_cache.py
+
+# AI Assistant 210-Query Evaluation Benchmark
+python scripts/run_ai_eval.py
+
+# 200+ Concurrent Requests Load Test
+python scripts/run_load_test.py
 ```
 
 ---
 
-## What I Learned
+## Documentation Directory Index
 
-- **Defensive Date Engineering**: Implemented deterministic date handling using `java.time.LocalDate` rather than legacy date classes, properly addressing calendar boundaries like February 29 and month-end dates.
-- **Financial Precision in Java**: Applied `BigDecimal` with explicit scale and rounding mode (`HALF_UP`) across all conversion formulas, avoiding floating-point inaccuracies inherent in `double` and `float`.
-- **Cache-Aside Architecture & Invalidation**: Integrated Spring Cache with Redis to accelerate read-heavy aggregation queries, while ensuring cache consistency through automated `@CacheEvict` annotations on write paths.
-- **RESTful API Design**: Built clean, resource-oriented endpoints with proper HTTP semantics, centralized exception mapping via `@RestControllerAdvice`, and declarative DTO validation.
-- **Layered Enterprise Architecture**: Maintained strict separation between Controllers, Services, Repositories, and Entities to guarantee code maintainability and testability.
+Detailed technical specifications are located in `docs/` and `deployment/`:
 
----
-
-## Future Improvements
-
-- [ ] **Email / Webhook Alerts**: Dispatch notification reminders 3 days prior to renewal dates.
-- [ ] **Multi-Currency Conversion**: Integrate an exchange-rate provider to normalize foreign currency expenses into a single target currency.
-- [ ] **Role-Based Authentication**: Integrate Spring Security with JWT for multi-tenant user isolation.
-
----
-
-## Author
-
-**Harshavardhan Varma**  
-- Email: [harsharaju1314@gmail.com](mailto:harsharaju1314@gmail.com)  
-- GitHub: [@harsharaju1314-hash](https://github.com/harsharaju1314-hash)  
-- Repository: [Subscription-Renewal-and-Expense-Tracker](https://github.com/harsharaju1314-hash/Subscription-Renewal-and-Expense-Tracker)
+- [`docs/architecture.md`](docs/architecture.md): System architecture, component models, and sequence diagrams.
+- [`docs/security.md`](docs/security.md): JWT rotation, RBAC enforcement, prompt-injection defense, and log redaction.
+- [`docs/api-usage.md`](docs/api-usage.md): OpenAPI endpoints, cURL examples, and request/response payloads.
+- [`docs/testing.md`](docs/testing.md): Automated testing matrix, pytest coverage, and test fixtures.
+- [`docs/performance-benchmarks.md`](docs/performance-benchmarks.md): Complete measured data and methodology for all 4 benchmarks.
+- [`docs/troubleshooting.md`](docs/troubleshooting.md): Operational runbooks for database, cache, and LLM incident resolution.
+- [`deployment/aws-ec2-deployment.md`](deployment/aws-ec2-deployment.md): Complete AWS EC2 production deployment guide.

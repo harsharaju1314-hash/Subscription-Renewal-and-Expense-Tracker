@@ -1,0 +1,47 @@
+groups:
+  - name: subscription_platform_alerts
+    rules:
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service {{ $labels.instance }} is DOWN"
+          description: "Service instance {{ $labels.instance }} has been unreachable for more than 1 minute."
+
+      - alert: HighHTTPErrorRate
+        expr: (sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m]))) * 100 > 1.0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High HTTP 5xx Error Rate (> 1%)"
+          description: "HTTP 5xx error rate is currently at {{ $value | printf \"%.2f\" }}% on service {{ $labels.service }}."
+
+      - alert: HighLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 0.5
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "P95 Latency Exceeds 500ms"
+          description: "95th percentile HTTP response latency is {{ $value | printf \"%.3f\" }}s."
+
+      - alert: LowRedisCacheHitRatio
+        expr: (sum(rate(redis_cache_hits_total[5m])) / (sum(rate(redis_cache_hits_total[5m])) + sum(rate(redis_cache_misses_total[5m])))) * 100 < 50.0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis Cache Hit Ratio Dropped Below 50%"
+          description: "Cache hit ratio is {{ $value | printf \"%.2f\" }}%, indicating high database fallback volume."
+
+      - alert: HighAIResponseLatency
+        expr: histogram_quantile(0.95, sum(rate(ai_response_duration_seconds_bucket[5m])) by (le)) > 2.0
+        for: 3m
+        labels:
+          severity: warning
+        annotations:
+          summary: "AI RAG Response Latency Exceeds 2.0s"
+          description: "95th percentile AI response latency has risen to {{ $value | printf \"%.3f\" }}s."

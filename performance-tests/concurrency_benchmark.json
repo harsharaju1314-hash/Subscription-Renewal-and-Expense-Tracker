@@ -1,0 +1,25 @@
+{
+  "benchmark_timestamp": "2026-11-24T15:41:03Z",
+  "concurrent_users": 200,
+  "total_requests": 1000,
+  "duration_seconds": 71.78,
+  "throughput_rps": 13.93,
+  "latency_metrics_ms": {
+    "mean": 10715.15,
+    "p50": 10500.4,
+    "p95": 14501.7,
+    "p99": 20126.19
+  },
+  "http_status_codes": {
+    "200": 1000
+  },
+  "error_count": 0,
+  "error_rate_pct": 0.0,
+  "availability_pct": 100.0,
+  "targets": {
+    "concurrent_requests": 200,
+    "availability_pct_target": 99.9,
+    "error_rate_pct_max": 0.1,
+    "status": "PASSED"
+  }
+}
